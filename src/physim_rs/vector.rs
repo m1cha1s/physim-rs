@@ -151,4 +151,17 @@ impl Vector {
             w: self.w,
         }
     }
+
+    pub fn mag(&mut self) -> f64 {
+        ((self.x*self.x) + (self.y*self.y) + (self.z*self.z) + (self.w*self.w)).sqrt()
+    }
+
+    pub fn norm(&mut self) -> &mut Vector {
+        self.x /= self.mag();
+        self.y /= self.mag();
+        self.z /= self.mag();
+        self.w /= self.mag();
+
+        self
+    }
 }

@@ -7,6 +7,7 @@ pub struct Object {
     pub mass: f64,
 }
 
+
 impl Object {
     pub fn new(pos: Vector, vel: Vector, acc: Vector, mass: f64) -> Object {
         Object {
@@ -17,14 +18,14 @@ impl Object {
         }
     }
 
-    pub fn update(&mut self, dt: f64) -> &mut Object {
+    pub fn update(&mut self, dt: f64) -> &mut Self {
         self.vel.add(self.acc.copy().mult_val(dt));
         self.pos.add(self.vel.copy().mult_val(dt));
         self.acc.mult_zero();
         self
     }
 
-    pub fn dump(&mut self) -> &mut Object {
+    pub fn dump(&mut self) -> &mut Self {
         println!("Position:");
         println!("X: {} \nY: {} \nZ: {}", self.pos.x, self.pos.y, self.pos.z);
         println!("Velocity:");
@@ -34,7 +35,7 @@ impl Object {
         self
     }
     
-    pub fn apply_force(&mut self, mut force: Vector) -> &mut Object {
+    pub fn apply_force(&mut self, mut force: Vector) -> &mut Self {
         self.acc.add(force.div_val(self.mass));
         self
     }
